@@ -186,9 +186,9 @@ export default function App() {
     return (
         <>
         <Background>
-            <h1>Check out everyones repo:</h1>
+            <h1>Check out everyones repo: </h1>
             <h4>Theres a lot of interesting ones you can find</h4>
-            <div className="d-flex flex-wrap">
+            <div className="d-flex flex-wrap ">
                 <Gitprofile login="kreceo"/>
                 <Gitprofile login="chrisbarberriley"/>
                 <Gitprofile login="dgowing95"/>
