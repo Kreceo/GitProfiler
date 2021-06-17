@@ -3,37 +3,39 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css'
 
 const Background = styled.div`
-  :after {
+:after {
     background: no-repeat 25vw 40vh / 30vw url("https://assets.codepen.io/518555/blobSolid.svg");
     content: '';
     height: 100%;
     left: 0;
     opacity: 0.8;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%; 
-  }
+}
 
-  & {
+& {
     align-items: center;
     background-color: #fff8e7;
     color: #545454;
+    display: flex;
+    height: 100vh;
     justify-content: center;
     position: relative;
-  }
+}
 
-  :before {
+:before {
     background: no-repeat 23vw 30vh   
     url("https://assets.codepen.io/518555/sparkles1.svg"), no-repeat right 25vw bottom 30vh 
     url("https://assets.codepen.io/518555/sparkles4.svg"), no-repeat 40vw 30vh / 35vw 
     url("https://assets.codepen.io/518555/blobStripe.svg");
     content: '';
-    height: 100%;
+    height: 100%; 
     left: 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%; 
-  } 
+} 
 `
 
 const Profile = styled.div`
@@ -62,7 +64,7 @@ const Profile = styled.div`
 
         & img {
             transition: all 0.25s linear;
-            // min-height: 400px;
+            max-height: 400px;
         }
 
         & .profile-content {
@@ -122,13 +124,18 @@ const Profile = styled.div`
     }
 `
 
+const Button = styled.button`
+    z-index: 11;
+`
+
 export default function App() {
 
-    function Gitprofile({login}) {
+    function Gitprofile() {
+        const [user, setUser] = useState('kreceo');
         const [data, setData] = useState(null);
         
         useEffect(() => {
-            fetch(`https://api.github.com/users/${login}`)
+            fetch(`https://api.github.com/users/${user}`)
             .then(res => res.json())
             .then(setData)
             .catch(console.error);
@@ -139,41 +146,47 @@ export default function App() {
             return (
                 <>
                 <Profile>
-                    <div className="profile-card text-center">
-                        <img src={data.avatar_url} className="img img-responsive" />
-                        <div className="profile-content">
-                            <div className="profile-name">
+                    <div class="profile-card text-center shadow">
+                        <img src={data.avatar_url} class="img img-responsive" />
+                        <div class="profile-content">
+                            <div class="profile-name">
                                 {data.name}
-                                <a href={data.html_url} target="_blank">
+                                <a href={data.html_url}>
                                     <p>@{data.login}</p>
                                 </a>
                             </div>
-                            <div className="profile-description">
+                            <div class="profile-description">
                                {data.bio}
                             </div>
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <div className="profile-overview">
-                                        <a href={`https://github.com/${data.login}?tab=repositories`} target="_blank">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="profile-overview">
+                                        <a href={data.repos_url}>
                                             <p>Public Repos</p>
                                             <h4>{data.public_repos}</h4>
                                         </a>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <div className="profile-overview">
+                                <div class="col-md-4">
+                                    <div class="profile-overview">
                                         <p>Followers</p>
                                         <h4>{data.followers}</h4>
                                     </div>
                                 </div>
-                                <div className="col-md-4">
-                                    <div className="profile-overview">
+                                {/* <div class="col-xs-4">
+                                    <div class="profile-overview">
+                                        <p>Hirable</p>
+                                        <h4>{data.hireable == true ? 'Open to jobs' : 'Not open to jobs'}</h4>
+                                    </div>
+                                </div> */}
+                                <div class="col-md-4">
+                                    <div class="profile-overview">
                                         <p>Following</p>
                                         <h4>{data.following}</h4>
                                     </div>
                                 </div>
                             </div>
-                            <span className="profile-description">Last updated: {new Date(data.updated_at).toLocaleString('en-US', {hour12: false})}</span>
+                            <Button onClick={() => setUser(user == 'Chrisbarberriley')}>Change</Button>
                         </div>
                     </div>
                 </Profile>
@@ -186,24 +199,7 @@ export default function App() {
     return (
         <>
         <Background>
-            <h1>Check out everyones repo:</h1>
-            <h4>Theres a lot of interesting ones you can find</h4>
-            <div className="d-flex flex-wrap">
-                <Gitprofile login="kreceo"/>
-                <Gitprofile login="chrisbarberriley"/>
-                <Gitprofile login="dgowing95"/>
-                <Gitprofile login="mattpetts"/>
-                <Gitprofile login="philjhazell2"/>
-                <Gitprofile login="chesterblack"/>
-                <Gitprofile login="seanryy"/>
-                <Gitprofile login="davidcoe-"/>
-                <Gitprofile login="csgabka"/>
-                <Gitprofile login="roryjgyoungs"/>
-                <Gitprofile login="louisepemble"/>
-                <Gitprofile login="connorlukedavies"/>
-                <Gitprofile login="alejandrosanchezdiaz"/>
-                <Gitprofile login="samaceville"/>
-            </div>
+            <Gitprofile />
         </Background>
         </>
     )
