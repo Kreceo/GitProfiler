@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Profile = styled.div`
+const Profile = styled.div` 
 max-width: 350px;
 background-color: #FFF;
 border-radius: 5px;
