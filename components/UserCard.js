@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Profile = styled.div`
-max-width: 400px;
+max-width: 350px;
 background-color: #FFF;
 border-radius: 5px;
 box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
@@ -12,6 +12,8 @@ position: relative;
 margin: 10px auto;
 cursor: pointer;
 z-index: 10;
+width: 90%;
+
 & .profile-card {
 
     & a {

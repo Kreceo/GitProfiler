@@ -59,14 +59,20 @@ export default function App() {
     return (
         <>
         <Background>
-            <h1>Check out everyones repo: </h1>
-            <h4>Theres a lot of interesting ones you can find</h4>
-            <div className="d-flex flex-wrap ">
-                {/* Looping through the array and returning a card/s with the data for the users */}
-                {users.map(user =>
-                  <Gitprofile login={user}/>
-                )}
-            </div>
+        <div class="container pt-4 px-0">
+          <div class="jumbotron">
+            <h1>Check out everyones repo:</h1>
+            <p>Theres a lot of interesting ones you can find, from projects on React, Javascript, PHP and more</p>
+          </div>
+        </div>
+        <div className="container px-0">
+          <div className="d-flex flex-wrap ">
+              {/* Looping through the array and returning a card/s with the data for the users */}
+              {users.map(user =>
+                <Gitprofile login={user}/>
+              )}
+          </div>
+        </div>
         </Background>
         </>
     )
