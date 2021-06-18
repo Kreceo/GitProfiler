@@ -60,7 +60,7 @@ export default function App() {
         <>
         <Background>
         <div class="container pt-4 px-0">
-          <div class="jumbotron">
+          <div class="jumbotron bg-light shadow-sm">
             <h1>Check out everyones repo:</h1>
             <p>Theres a lot of interesting ones you can find, from projects on React, Javascript, PHP and more</p>
           </div>
